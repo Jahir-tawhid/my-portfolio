@@ -1,10 +1,8 @@
 import { projectsData } from "../data/projectsData";
 
 const Projects = () => {
-  // Dynamically resolve base URL for GitHub Pages sub-paths
   const baseUrl = import.meta.env.BASE_URL || "/";
 
-  // Helper function to resolve dynamic image paths seamlessly for GitHub Pages
   const getImagePath = (imagePath) => {
     if (!imagePath) return "";
     if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
@@ -13,7 +11,10 @@ const Projects = () => {
     const cleanPath = imagePath.startsWith("/")
       ? imagePath.slice(1)
       : imagePath;
-    return `${baseUrl}${cleanPath}`;
+
+    // Ensure properly formatted path for base URL
+    const formattedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+    return `${formattedBase}${cleanPath}`;
   };
 
   return (
@@ -29,7 +30,6 @@ const Projects = () => {
               key={project.id}
               className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col"
             >
-              {}
               <div className="h-48 overflow-hidden bg-gray-800">
                 <img
                   src={getImagePath(project.image)}
@@ -38,7 +38,6 @@ const Projects = () => {
                 />
               </div>
 
-              {}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold mb-3 text-white">
