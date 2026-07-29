@@ -1,5 +1,3 @@
-import React from "react";
-
 const Skills = () => {
   const frontendSkills = [
     { name: "HTML5", icon: "fab fa-html5", color: "text-orange-500" },

@@ -1,5 +1,3 @@
-
-
 const Navbar = ({ activeTab, setActiveTab, onOpenContact }) => {
   const navItems = [
     { id: "home", label: "Home" },
