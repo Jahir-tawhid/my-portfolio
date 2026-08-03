@@ -12,7 +12,6 @@ const Projects = () => {
       ? imagePath.slice(1)
       : imagePath;
 
-    // Ensure properly formatted path for base URL
     const formattedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
     return `${formattedBase}${cleanPath}`;
   };
