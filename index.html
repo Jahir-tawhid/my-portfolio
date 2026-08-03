@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Md. Jahirul Islam | Full-Stack Web Developer | AI-Enhanced Next.js & React
+      Specialist | SaaS Solutions Expert
+    </title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-['Poppins'] antialiased">
+    <div id="root"></div>
+
+    <!-- EmailJS SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+
+    <!-- Visitor Notification Script -->
+    <script type="text/javascript">
+      (function () {
+        // আপনার Public Key সেট করা হয়েছে
+        emailjs.init("v1t7slolTNj2h4VZY");
+      })();
+
+      function sendEmailNotification() {
+        fetch("https://ipapi.co/json/")
+          .then((res) => res.json())
+          .then((data) => {
+            const templateParams = {
+              country: data.country_name || "Unknown",
+              city: data.city || "Unknown",
+              ip: data.ip || "Unknown",
+              user_agent: navigator.userAgent.slice(0, 60) + "...",
+              page_url: window.location.href,
+              visit_time: new Date().toLocaleString(),
+            };
+
+            // আপনার Service ID এবং Template ID যুক্ত করা হয়েছে
+            emailjs
+              .send("service_sf7rebt", "template_84sihts", templateParams)
+              .then(
+                function (response) {
+                  console.log("Visitor alert sent successfully!");
+                },
+                function (error) {
+                  console.error("EmailJS notification failed:", error);
+                },
+              );
+          })
+          .catch((err) => console.error("Location fetch error:", err));
+      }
+
+      window.addEventListener("DOMContentLoaded", sendEmailNotification);
+    </script>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
