@@ -9,7 +9,7 @@ const Projects = () => {
       return imagePath;
     }
     const cleanPath = imagePath.startsWith("/")
-      ? imagePath.slice(1)
+      ? imagePath.slice(1) 
       : imagePath;
 
     const formattedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
